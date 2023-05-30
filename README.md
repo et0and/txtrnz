@@ -6,7 +6,7 @@ TXTRNZ is a lightweight, text-only version of the RNZ (Radio New Zealand) news s
 
 ## Motivation
 
-The initial idea for this project came from RNZ's initiative during the devastating floods in New Zealand. During this crisis, many users were without reliable internet connections, and RNZ maintained a lightweight page of updated information to keep the public informed. This project is inspired by that initiative, as well as text-only NPR (National Public Radio) news.
+The initial idea for this project came from RNZ's initiative during the devastating floods in New Zealand. During this crisis, many users were without reliable internet connections, and RNZ maintained a lightweight page of updated information to keep the public informed. This project is inspired by that initiative, as well as [the text-only version of NPR](https://text.npr.org).
 
 ## Features
 
@@ -19,10 +19,6 @@ The initial idea for this project came from RNZ's initiative during the devastat
 - **Web Scraping**: The web scraping is done using BeautifulSoup and requests.
 - **Task Scheduling**: Regular scraping tasks are handled by APScheduler.
 - **Front End**: The front end is a simple HTML/CSS template rendered by Flask. The CSS is minimal, to ensure fast loading times, and utilizes system fonts for speed.
-
-## License
-
-MIT License
 
 ## Acknowledgements
 

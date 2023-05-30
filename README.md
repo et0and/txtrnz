@@ -11,13 +11,13 @@ The initial idea for this project came from RNZ's initiative during the devastat
 ## Features
 
 - TXTRNZ is a bloat-free, text-only version of the RNZ site. It strips away images, JavaScript, and unnecessary CSS to deliver news as quickly as possible.
-- It utilizes system fonts to further optimize speed and efficiency.
+- All scraping and building done server-side to ensure speed.
 
 ## Technical Stack
 
-- **Back End**: The back end of the application is written in Python, using the Flask web framework for routing and templating.
-- **Web Scraping**: The web scraping is done with BeautifulSoup and requests, Python libraries that make it easy to scrape information from web pages.
-- **Task Scheduling**: Regular scraping tasks are handled by APScheduler, a Python library that lets you schedule tasks to be executed periodically.
+- **Back End**: The back end of the application is written in Python, using Flask for routing and templating.
+- **Web Scraping**: The web scraping is done using BeautifulSoup and requests.
+- **Task Scheduling**: Regular scraping tasks are handled by APScheduler.
 - **Front End**: The front end is a simple HTML/CSS template rendered by Flask. The CSS is minimal, to ensure fast loading times, and utilizes system fonts for speed.
 
 ## License
@@ -25,5 +25,7 @@ The initial idea for this project came from RNZ's initiative during the devastat
 MIT License
 
 ## Acknowledgements
+
+This was my first major foray into using BeautifulSoup and web scraping in general. My knowledge of Python is limited, so I hope to continue improving this project over time. 
 
 I would like thank RNZ for all of their work towards independent journalism and media here in Aotearoa, as well as allowing me to be able to scrape their site freely without limiting or blocking my connections!

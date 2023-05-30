@@ -10,7 +10,7 @@ The initial idea for this project came from RNZ's initiative during the devastat
 
 ## Features
 
-- TXTRNZ is a bloat-free, text-only version of the RNZ site. It strips away images, JavaScript, and unnecessary CSS to deliver news as quickly as possible.
+- No images, JavaScript, tracking or unnecessary CSS to deliver news as quickly as possible.
 - All scraping and building done server-side to ensure speed.
 
 ## Technical Stack

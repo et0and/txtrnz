@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+        <title>TXTRNZ</title>
+    </head>
+    <body>
+        <header>
+            <p>Text-Only Version <a class="full-version-link button" href="https://rnz.co.nz/">Go To Full Site</a></p>
+        </header>
+        <h1>TXTRNZ</h1>
+        <div class="hr-line"></div>
+        <p class="topic-date">{{ today }}</p>
+            {% for item in data %}
+                <div class="news-item">
+                    <h3>{{ item.Headline }}</h3>
+                    <p>{{ item.Summary }}</p>
+                    <a href="{{ url_for('article', article_id=loop.index0) }}">Read more</a>
+                </div>
+            {% endfor %}
+        <div class="hr-line"></div>
+        <footer>
+            <nav class="lower-nav-container">
+              <li><a href="https://tom.so/projects/txtrnz">About this site</a></li>
+              <li><a href="https://www.rnz.co.nz/about">About RNZ</a></li>
+            </nav>
+          </footer>
+    </body>
+</html>

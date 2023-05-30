@@ -1,4 +1,6 @@
-# TXTRNZ - A Text-Only News Service
+# TXTRNZ - a text-only RNZ news service
+
+![Screenshot of TXTRNZ on desktop](txtrnz.webp)
 
 TXTRNZ is a lightweight, text-only version of the RNZ (Radio New Zealand) news site, designed to deliver news in the most minimal, bloat-free way possible. The primary goal is to provide a platform for users with low data/bandwidth to access the news with speed and ease.
 

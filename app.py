@@ -6,15 +6,31 @@ import os
 import time
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
+import pytz
 
 app = Flask(__name__)
 
 data = []  # Hold our scraped data
 
+# Use a single session for all requests
+s = requests.Session()
+
+nz = pytz.timezone('Pacific/Auckland')
+
+def get_current_nz_date():
+    # Get the current date and time in UTC
+    now_utc = datetime.now(pytz.utc)
+
+    # Convert to New Zealand Time
+    now_nz = now_utc.astimezone(nz)
+
+    # Format the date
+    return now_nz.strftime('%B %d, %Y')
+
 def scrape_rnz():
     global data
     url = 'https://rnz.co.nz'
-    response = requests.get(url)
+    response = s.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
 
     # Clear old data
@@ -35,7 +51,7 @@ def scrape_rnz():
 
             # Scrape article page
             time.sleep(2)  # wait for 2 seconds to avoid being blocked
-            article_response = requests.get(link)
+            article_response = s.get(link)
             article_soup = BeautifulSoup(article_response.text, 'html.parser')
             article_text = []
             for selector in ['.article__body p', '.episode-body p', '.page__body p']:
@@ -49,7 +65,6 @@ def scrape_rnz():
     with open('rnz_data.json', 'w') as f:
         json.dump(data, f)
 
-
 @app.route('/')
 def home():
     # Check if the JSON file exists
@@ -59,7 +74,7 @@ def home():
             data = json.load(f)
 
         # Generate today's date
-        today = datetime.now().strftime('%B %d, %Y')
+        today = get_current_nz_date()
 
         # Render data to the HTML template
         return render_template('homepage.html', data=data, today=today)

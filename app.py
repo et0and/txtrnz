@@ -7,7 +7,6 @@ import time
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
 import pytz
-from threading import Thread
 
 app = Flask(__name__)
 
@@ -94,7 +93,7 @@ def article(article_id):
 
         if article_id < len(data):
             # Generate today's date
-            today = get_current_nz_date()
+            today = datetime.now().strftime('%B %d, %Y')
 
             # Render data to the HTML template
             return render_template('article.html', article=data[article_id], today=today)
@@ -105,20 +104,13 @@ def article(article_id):
         return "Data is being prepared. Please try again in a few minutes."
 
 
-# Define a new function to start scraping in a separate thread
-def start_scraping():
-    # Run scrape_rnz once at start to ensure that JSON file is created
-    scrape_rnz()
+# Run scrape_rnz once at start to ensure that JSON file is created
+scrape_rnz()
 
-    # Initialize scheduler
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(scrape_rnz, 'interval', hours=1)
-    scheduler.start()
+# Initialize scheduler
+scheduler = BackgroundScheduler()
+scheduler.add_job(scrape_rnz, 'interval', hours=1)
+scheduler.start()
 
 if __name__ == '__main__':
-    # Start a separate thread for scraping
-    scraper_thread = Thread(target=start_scraping)
-    scraper_thread.start()
-
-    # Start the application
     app.run(host='0.0.0.0', port=8080)
